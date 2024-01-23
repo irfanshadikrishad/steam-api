@@ -1,0 +1,15 @@
+import { config } from "dotenv";
+import express from "express";
+import chalk from "chalk";
+import userRouter from "./routers/user-router.js";
+
+config();
+const PORT = process.env.PORT || 3001;
+const app = express();
+
+app.use(express.json());
+app.use("/api/v1", userRouter);
+
+app.listen(PORT, () => {
+  console.log(chalk.cyan(`[listen] ${PORT}`));
+});
