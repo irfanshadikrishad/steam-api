@@ -50,4 +50,39 @@ const recent = async (req, res) => {
   }
 };
 
-export { recent };
+const upcoming = async (req, res) => {
+  try {
+    const upcoming = [];
+    const link = `https://store.steampowered.com/search/?filter=popularcomingsoon`;
+    const response = await request({
+      uri: link,
+      headers: {
+        Accept:
+          "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Accept-Language": "en-US,en;q=0.9,pl;q=0.8",
+      },
+      gzip: true,
+    });
+    const $ = await cheerio.load(response);
+
+    const games = $(".search_result_row");
+    games.each((index, game) => {
+      const image = $(game)
+        .find("div[class='col search_capsule'] > img")
+        .attr("src");
+      const title = $(game).find('span[class="title"]').text().trim();
+      const release_date = $(game)
+        .find('div[class="col search_released responsive_secondrow"]')
+        .text()
+        .trim();
+
+      upcoming.push({ id: index + 1, title, image, release_date });
+    });
+    res.status(200).json({ upcoming });
+  } catch (error) {
+    console.log(`[upcoming] ${error.message}`);
+  }
+};
+
+export { recent, upcoming };
