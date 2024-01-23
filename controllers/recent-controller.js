@@ -85,4 +85,44 @@ const upcoming = async (req, res) => {
   }
 };
 
-export { recent, upcoming };
+const topSeller = async (req, res) => {
+  try {
+    const top_seller = [];
+    const link = `https://store.steampowered.com/search/?filter=topsellers&ignore_preferences=1`;
+    const response = await request({
+      uri: link,
+      headers: {
+        Accept:
+          "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Accept-Language": "en-US,en;q=0.9,pl;q=0.8",
+      },
+      gzip: true,
+    });
+    const $ = await cheerio.load(response);
+
+    const games = $(".search_result_row");
+    games.each((index, game) => {
+      const link = $(game).attr("href");
+      const title = $(game).find('span[class="title"]').text().trim();
+      const released = $(game)
+        .find('div[class="col search_released responsive_secondrow"]')
+        .text()
+        .trim();
+      const price = $(game)
+        .find('div[class="discount_final_price"]')
+        .text()
+        .trim();
+      const image = $(game)
+        .find('div[class="col search_capsule"] > img')
+        .attr("src");
+
+      top_seller.push({ id: index + 1, title, price, released, link, image });
+    });
+    res.status(200).json({ top_seller });
+  } catch (error) {
+    console.log(chalk.magenta(`[topSeller] ${error.message}`));
+  }
+};
+
+export { recent, upcoming, topSeller };
