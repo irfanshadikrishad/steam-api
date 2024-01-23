@@ -3,7 +3,7 @@ import {
   recent,
   upcoming,
   topSeller,
-} from "../controllers/recent-controller.js";
+} from "../controllers/lists-controller.js";
 
 const router = Router();
 
