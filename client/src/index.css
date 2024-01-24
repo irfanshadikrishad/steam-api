@@ -90,6 +90,7 @@ body {
 
 .endpointsAll {
     margin-top: 10px;
+    margin-bottom: 50px;
 }
 
 nav {
@@ -134,6 +135,17 @@ nav {
     border-radius: 7px;
 }
 
+.star {
+    color: gold;
+    display: flex;
+}
+
+.count {
+    display: flex;
+    align-items: center;
+    transform: translateY(1px);
+}
+
 /* ---------------------- */
 /* -----responsive------- */
 /* ---------------------- */
@@ -141,11 +153,25 @@ nav {
     .profile_card {
         width: 60%;
     }
+
+    .container {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width:1024px) {
+    .container {
+        width: 90%;
+    }
 }
 
 @media screen and (max-width:768px) {
     .profile_card {
         width: 80%;
+    }
+
+    .endpoints {
+        grid-template-columns: 1fr;
     }
 }
 

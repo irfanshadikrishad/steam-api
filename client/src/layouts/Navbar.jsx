@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
-import { FaGithub } from "react-icons/fa";
 import { useEffect, useState } from 'react';
+import { FaGithub } from "react-icons/fa";
+import { FaStar } from "react-icons/fa6";
 
 export default function Navbar() {
     const [repo, setRepo] = useState({});
@@ -26,7 +27,7 @@ export default function Navbar() {
                         href='https://github.com/irfanshadikrishad/steam-api'
                         className='github'
                         target='_blank'>
-                        {<FaGithub />} github {repo.stargazers_count}
+                        {<FaGithub />} <span className="count">{repo.stargazers_count}</span> <span className="star">{<FaStar />}</span>
                     </a>
                 </div>
             </section>
