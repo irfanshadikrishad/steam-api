@@ -175,8 +175,19 @@ nav {
     }
 }
 
+@media screen and (max-width:450px) {
+    .profile_frame {
+        width: 120%;
+        left: auto;
+    }
+}
+
 @media screen and (max-width:425px) {
     .profile_stats {
         grid-template-columns: 1fr;
+    }
+
+    .profile {
+        margin: 50px 0;
     }
 }
