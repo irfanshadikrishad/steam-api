@@ -4,7 +4,7 @@ import * as cheerio from "cheerio";
 
 const user = async (req, res) => {
   try {
-    const { id } = await req.body;
+    const { id } = await req.params;
     const profileLink = `https://steamcommunity.com/id/${id}`;
 
     const response = await request({

@@ -13,11 +13,15 @@ app.use(express.json());
 app.use(
   cors({
     origin: "*",
-    methods: ["GET", "POST"],
+    methods: ["GET"],
   })
 );
 app.use("/api/v1", userRouter);
 app.use("/api/v1", listRouter);
+
+app.get("/", async (req, res) => {
+  res.status(200).json({ status: 200 });
+});
 
 app.listen(PORT, () => {
   console.log(chalk.cyan(`[listen] ${PORT}`));

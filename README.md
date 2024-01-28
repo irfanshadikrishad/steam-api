@@ -1,5 +1,7 @@
 # steam-api
 
+<img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/irfanshadikrishad/steam-api?style=for-the-badge&color=%23219EBC"> <img alt="GitHub License" src="https://img.shields.io/github/license/irfanshadikrishad/steam-api?style=for-the-badge&color=%23B0C4B1"> <img alt="GitHub issues" src="https://img.shields.io/github/issues-raw/irfanshadikrishad/steam-api?style=for-the-badge&color=%2352B69A">
+
 Open Source unofficial Steam API to get necessary data from Steam to implement them in your own Web or Mobile Apps. Built on NodeJS.
 
 #### Why ?
@@ -22,9 +24,9 @@ Endpoints:
   </thead>
   <tbody>
     <tr>
-      <td>/api/v1/user</td>
-      <td>To get user information, be sure to pass steam id as <code>id</code> in request body</td>
-      <td>POST</td>
+      <td>/api/v1/user/:id</td>
+      <td>To get user information</td>
+      <td>GET</td>
     </tr>
     <tr>
       <td>/api/v1/recent</td>
